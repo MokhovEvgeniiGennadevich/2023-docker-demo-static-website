@@ -1,4 +1,4 @@
-build:
+deploy:
 	docker build -t docker-registry.toxiccat.ru/docker-static-website .
 	docker image push docker-registry.toxiccat.ru/docker-static-website:latest
 
