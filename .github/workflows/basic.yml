@@ -53,12 +53,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Auto PR
+      - name: Auto Pull Request
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
           --body "Auto request from CI/CD"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
-      - name: Auto Merge
+      - name: Auto Merge Pull Request
         run: gh pr merge --auto
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
