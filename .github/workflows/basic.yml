@@ -1,0 +1,12 @@
+name: basic
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  basic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
