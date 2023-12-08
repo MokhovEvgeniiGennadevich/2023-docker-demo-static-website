@@ -50,6 +50,9 @@ jobs:
     needs: [basic, docker]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Auto PR
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
