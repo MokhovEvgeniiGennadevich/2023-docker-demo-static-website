@@ -30,3 +30,14 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      # Запускаем docker-команду
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v4
+        with:
+          # Путь в котором будут выполняться комманды для сборки
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: latest
