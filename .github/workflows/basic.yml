@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+permissions:
+  pull-requests: write
+
 jobs:
   basic:
     runs-on: ubuntu-latest
@@ -42,12 +45,8 @@ jobs:
           push: true
           tags: docker-registry.toxiccat.ru/docker-static-website:latest
 
+      # Автоматическое создание Pull Request'a из DEV ветки в MAIN
       - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "main"
-          pr_title: "Pulling ${{ github.ref }} into main"
-          pr_body: ":crown: *An automated PR*"
-          pr_reviewer: "MokhovEvgeniiGennadevich"
-          pr_draft: true
-          github_token: ${{ secrets.PAT }}
+        run: |
+          gh_pr_up() { gh pr create $* || gh pr edit $* }
+          gh_pr_up --title "My pull request" --body "Description"
