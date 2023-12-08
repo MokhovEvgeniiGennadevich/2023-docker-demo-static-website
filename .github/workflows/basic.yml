@@ -59,3 +59,6 @@ jobs:
           --body "Auto request from CI/CD"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: Auto Merge
+        run: gh pr merge --auto
