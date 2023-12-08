@@ -9,26 +9,20 @@ permissions:
   pull-requests: write
 
 env:
-  RUNNER_PATH: ${{ github.workspace }}
-  DEPLOY_PATH: ./
   GITHUB_TOKEN: ${{ secrets.PAT }}
 
 jobs:
   basic:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.DEPLOY_PATH }}
     steps:
       - uses: actions/checkout@v4
 
   docker:
     needs: [basic]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.DEPLOY_PATH }}
     steps:
+      - uses: actions/checkout@v4
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -58,10 +52,9 @@ jobs:
   auto-pr:
     needs: [basic, docker]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.DEPLOY_PATH }}
     steps:
+      - uses: actions/checkout@v4
+
       - name: Auto Pull Request
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
