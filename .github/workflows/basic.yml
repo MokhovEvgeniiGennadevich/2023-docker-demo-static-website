@@ -45,7 +45,11 @@ jobs:
           push: true
           tags: docker-registry.toxiccat.ru/docker-static-website:latest
 
-      # Автоматическое создание Pull Request'a из DEV ветки в MAIN
+  # Автоматическое создание Pull Request'a из DEV ветки в MAIN
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
       - name: pull-request
         run: |
           gh_pr_up() { gh pr create $* || gh pr edit $* }
