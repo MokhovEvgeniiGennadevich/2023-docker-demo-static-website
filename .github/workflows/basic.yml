@@ -10,7 +10,7 @@ permissions:
 
 env:
   RUNNER_PATH: ${{ github.workspace }}
-  DEPLOY_PATH: /opt/my-super-project
+  DEPLOY_PATH: ./
   GITHUB_TOKEN: ${{ secrets.PAT }}
 
 jobs:
