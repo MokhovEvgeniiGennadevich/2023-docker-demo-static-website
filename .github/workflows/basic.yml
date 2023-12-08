@@ -61,4 +61,4 @@ jobs:
           --body "Auto request from CI/CD"
 
       - name: Auto Merge Pull Request
-        run: gh pr merge --auto
+        run: gh pr merge --auto --merge
