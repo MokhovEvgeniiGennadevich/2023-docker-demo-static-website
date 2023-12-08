@@ -40,4 +40,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: latest
+          tags: docker-registry.toxiccat.ru/docker-static-website:latest
