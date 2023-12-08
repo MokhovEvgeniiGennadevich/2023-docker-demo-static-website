@@ -50,3 +50,5 @@ jobs:
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
           --body "Auto request from CI/CD"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
