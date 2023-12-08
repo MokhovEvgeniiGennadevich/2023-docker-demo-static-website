@@ -8,6 +8,11 @@ on:
 permissions:
   pull-requests: write
 
+env:
+  RUNNER_PATH: ${{ github.workspace }}
+  DEPLOY_PATH: /opt/my-super-project
+  GITHUB_TOKEN: ${{ secrets.PAT }}
+
 jobs:
   basic:
     runs-on: ubuntu-latest
@@ -15,11 +20,9 @@ jobs:
       - uses: actions/checkout@v4
 
   docker:
+    needs: [basic]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -50,17 +53,10 @@ jobs:
     needs: [basic, docker]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Auto Pull Request
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
           --body "Auto request from CI/CD"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Auto Merge Pull Request
         run: gh pr merge --auto
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
