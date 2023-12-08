@@ -41,3 +41,13 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: docker-registry.toxiccat.ru/docker-static-website:latest
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          pr_title: "Pulling ${{ github.ref }} into main"
+          pr_body: ":crown: *An automated PR*"
+          pr_reviewer: "MokhovEvgeniiGennadevich"
+          pr_draft: true
+          github_token: ${{ secrets.PAT }}
