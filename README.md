@@ -1,3 +1,19 @@
-# Simple Static Website in Docker Container
+# Статичный вёб-сайт в docker контейнере
 
-Very simple example of static website inside docker container.
+[Русский](README.md) [English](README.EN.md)
+
+## Цель
+
+Разработать статичный вёб-сайт с помощью HTML5 + CSS3
+
+Для отработки необходимых навыков перед разработкой крупного проекта.
+
+## Стэк
+
+* HTML 5
+* CSS 3
+* Docker
+* Приватный Docker Registry
+* GitHub CI/CD
+* * Сборка проекта в Docker образ
+* * Загрузка образа проекта в приватный docker registry

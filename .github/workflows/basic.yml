@@ -49,13 +49,14 @@ jobs:
           tags: docker-registry.toxiccat.ru/docker-static-website:latest
 
   # Автоматическое создание Pull Request'a из DEV ветки в MAIN
-  auto-pr:
+  # Автоматический merge Pull Request'a
+  auto-pr-mr:
     needs: [basic, docker]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Auto Pull Request
+      - name: Auto Pull Request Create
         run:
           gh pr create --title "Auto PR from DEV to MAIN"
           --body "Auto request from CI/CD"
